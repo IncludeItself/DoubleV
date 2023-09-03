@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.PurchaseOrdersDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.PurchaseOrdersEntity" id="purchaseOrdersMap">
+        <result property="purchaseOrder" column="purchase_order"/>
+        <result property="consumingPosting" column="consuming_posting"/>
+        <result property="packageList" column="package_list"/>
+        <result property="plantCode" column="plant_code"/>
+        <result property="supplier" column="supplier"/>
+        <result property="dateCreated" column="date_created"/>
+        <result property="documentDate" column="document_date"/>
+<!--        <result property="postDate" column="post_date"/>-->
+        <result property="creator" column="creator"/>
+    </resultMap>
+    <update id="updateFiVoucherCodeByMaterialVoucherCode">
+        update movements set fi_voucher_code=#{data} where material_voucher_code=#{newMaterialVoucherCode}
+    </update>
+    <select id="getLatestPurchaseOrder" resultType="java.lang.Long">
+        select max(purchase_order) from purchase_orders
+    </select>
+    <select id="getSupplier" resultType="java.lang.String">
+        select supplier from purchase_orders where purchase_order=#{purchaseOrder}
+    </select>
+    <select id="getCompanyCode" resultType="java.lang.String">
+        select supplier from purchase_orders where purchase_order=#{purchaseOrder}
+    </select>
+
+
+</mapper>

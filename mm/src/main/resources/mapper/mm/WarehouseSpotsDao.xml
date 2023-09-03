@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.WarehouseSpotsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.WarehouseSpotsEntity" id="warehouseSpotsMap">
+        <result property="id" column="id"/>
+        <result property="areaCode" column="area_code"/>
+        <result property="businessArea" column="business_area"/>
+        <result property="warehouseCode" column="warehouse_code"/>
+        <result property="plantCode" column="plant_code"/>
+    </resultMap>
+    <select id="getBusinessAreaByStockSpot" resultType="java.lang.String">
+        select business_area from warehouse_spots where id=#{stockSpot}
+    </select>
+
+
+</mapper>

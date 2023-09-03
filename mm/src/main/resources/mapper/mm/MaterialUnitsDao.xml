@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.MaterialUnitsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.MaterialUnitsEntity" id="materialUnitsMap">
+        <result property="materialCode" column="material_code"/>
+        <result property="unit" column="unit"/>
+        <result property="rate" column="rate"/>
+    </resultMap>
+    <select id="getUnitRate" resultType="java.lang.Float">
+        select rate from material_units where material_code=#{materialCode} and unit=#{basicUnit}
+    </select>
+    <select id="getRateBasicUnitTo" resultType="java.lang.Float">
+        select rate from material_units where material_code=#{materialCode} and unit=#{orderUnit}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.SupplierInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.SupplierInfoEntity" id="supplierInfoMap">
+        <result property="supplier" column="supplier"/>
+        <result property="supplierDescription" column="supplier_description"/>
+        <result property="type" column="type"/>
+    </resultMap>
+    <select id="getNameById" resultType="com.wuxinfeng.doublev.mm.vo.SupplierNameVo">
+        select supplier,supplier_description from supplier_info
+        <where>
+            supplier=#{supplier}
+        </where>
+    </select>
+    <select id="selectSupplierByPlant" resultType="java.lang.String">
+        select supplier from supplier_info
+        <where>
+            plant=#{plant}
+        </where>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.DataDicDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.DataDicEntity" id="dataDicMap">
+        <result property="optionDescription" column="option_description"/>
+        <result property="fieldName" column="field_name"/>
+    </resultMap>
+    <select id="getOptionByField" resultType="java.lang.String">
+        select option_description from data_dic
+        <where>
+            field_name=#{field}
+        </where>
+    </select>
+    <select id="getFieldNames" resultType="java.lang.String">
+        select distinct field_name from data_dic
+    </select>
+
+
+</mapper>

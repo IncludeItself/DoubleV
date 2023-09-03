@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.MaterialsAccountingDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.MaterialsAccountingEntity" id="materialsAccountingMap">
+        <result property="materialCode" column="material_code"/>
+        <result property="plant" column="plant"/>
+        <result property="qtyAll" column="qty_all"/>
+        <result property="valuationClass" column="valuation_class"/>
+        <result property="qtySales" column="qty_sales"/>
+        <result property="ml" column="ml"/>
+        <result property="priceDetermined" column="price_determined"/>
+        <result property="priceControl" column="price_control"/>
+        <result property="standardPrice" column="standard_price"/>
+        <result property="priceDenominator" column="price_denominator"/>
+        <result property="value" column="value"/>
+    </resultMap>
+    <select id="getByMaterialCode" resultType="com.wuxinfeng.doublev.mm.entity.MaterialsAccountingEntity">
+        select * from materials_accounting
+        <where>
+            plant=#{plant} and material_code=#{materialCode}
+        </where>
+    </select>
+
+
+</mapper>

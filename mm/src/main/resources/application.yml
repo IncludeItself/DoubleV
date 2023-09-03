@@ -1,0 +1,51 @@
+server:
+  port: 9013
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.38.201:3306/doublev-mm?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.38.201:8848
+
+  redis:
+    host: 192.168.38.201
+    port: 6379
+  application:
+    name: mm
+
+
+  rabbitmq:
+    host: 192.168.38.201
+    port: 5672
+    virtual-host: /
+
+    #开户发送端确认
+    publisher-confirm-type: correlated
+    #开户发送端消息抵达队列的确认
+    publisher-returns: true
+    #只要抵达队列，以异步发送优先回调我们这个returnConfirm
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: auto
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+mm:
+  redis:
+    timeout:                                     #秒
+      material-unit: 604800
+      supplier-list: 86400
+
+

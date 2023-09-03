@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.MovementsConfigDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.MovementsConfigEntity" id="movementsConfigMap">
+        <result property="movementConfigId" column="movement_config_id"/>
+        <result property="movementType" column="movement_type"/>
+        <result property="specialStock" column="special_stock"/>
+        <result property="valueUpdating" column="value_updating"/>
+        <result property="qtyUpdating" column="qty_updating"/>
+        <result property="movementIndicator" column="movement_indicator"/>
+        <result property="consumptionPosting" column="consumption_posting"/>
+        <result property="transactionKey" column="transaction_key"/>
+        <result property="accountModification" column="account_modification"/>
+    </resultMap>
+    <select id="getValueStrings" resultType="com.wuxinfeng.doublev.mm.entity.ValueString">
+        select transaction_key,account_modification from movements_config
+        <where>
+            <if test="movementType!=null">
+                and movement_type=#{movementType}
+            </if>
+            <if test="specialStock!=null">
+                and special_stock=#{specialStock}
+            </if>
+            <if test="qtyUpdating!=null">
+                and qty_updating=#{qtyUpdating}
+            </if>
+            <if test="valueUpdating!=null">
+                and value_updating=#{valueUpdating}
+            </if>
+            <if test="movementIndicator!=null">
+                and movement_indicator=#{movementIndicator}
+            </if>
+            <if test="consumptionPosting!=null">
+                and consumption_posting=#{consumptionPosting}
+            </if>
+
+        </where>
+    </select>
+
+
+</mapper>

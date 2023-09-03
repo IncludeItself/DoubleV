@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.fi.dao.VouchersDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.fi.entity.VouchersEntity" id="vouchersMap">
+        <result property="voucherNumber" column="voucher_number"/>
+        <result property="companyCode" column="company_code"/>
+        <result property="voucherType" column="voucher_type"/>
+        <result property="documentDate" column="document_date"/>
+        <result property="postingDate" column="posting_date"/>
+        <result property="reference" column="reference"/>
+        <result property="docHeaderText" column="doc_header_text"/>
+        <result property="creator" column="creator"/>
+        <result property="timeCreated" column="time_created"/>
+        <result property="lastChange" column="last_change"/>
+        <result property="writtenOffVoucher" column="written_off_voucher"/>
+    </resultMap>
+    <insert id="addWrittenVoucher">
+        update vouchers set written_off_voucher = ${param2} where voucher_number=${param1}
+    </insert>
+    <delete id="deleteByCode">
+        delete from vouchers where voucher_number=#{code}
+    </delete>
+    <select id="getWriteOffVoucherByVoucherNumber" resultType="String">
+        select written_off_voucher from vouchers where voucher_number=${integer}
+    </select>
+
+
+</mapper>

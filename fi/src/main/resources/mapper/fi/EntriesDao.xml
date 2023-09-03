@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.fi.dao.EntriesDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.fi.entity.EntriesEntity" id="entriesMap">
+        <result property="voucherNumber" column="voucher_number"/>
+        <result property="itemNumber" column="item_number"/>
+        <result property="currencyBusiness" column="currency_business"/>
+        <result property="exchangeDate" column="exchange_date"/>
+        <result property="postKey" column="post_key"/>
+        <result property="account" column="account"/>
+        <result property="amountBusiness" column="amount_business"/>
+        <result property="currencyLocal" column="currency_local"/>
+        <result property="amountLocal" column="amount_local"/>
+        <result property="costCenter" column="cost_center"/>
+        <result property="businessArea" column="business_area"/>
+        <result property="assignment" column="assignment"/>
+        <result property="text" column="text"/>
+        <result property="reasonCode" column="reason_code"/>
+        <result property="payingRequest" column="paying_request"/>
+        <result property="specialIndicator" column="special_indicator"/>
+        <result property="taxCode" column="tax_code"/>
+        <result property="calculateTax" column="calculate_tax"/>
+        <result property="tradingMate" column="trading_mate"/>
+        <result property="dueOn" column="due_on"/>
+        <result property="profitCenter" column="profit_center"/>
+        <result property="itemCompanyCode" column="item_company_code"/>
+        <result property="materialCode" column="material_code"/>
+        <result property="materialQuantity" column="material_quantity"/>
+        <result property="materialUnit" column="material_unit"/>
+        <result property="clearVoucher" column="clear_voucher"/>
+    </resultMap>
+    <insert id="addWittenVoucher">
+        update entries set clear_voucher = ${param2} where voucher_number=${param1}
+    </insert>
+    <delete id="deleteByCode">
+        delete from entries where voucher_number=#{code}
+    </delete>
+
+    <select id="selectByVoucherNumber" resultType="com.wuxinfeng.doublev.fi.entity.EntriesEntity">
+        select * from entries where voucher_number=${voucherNumber}
+    </select>
+
+
+</mapper>

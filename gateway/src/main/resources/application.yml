@@ -1,0 +1,92 @@
+server:
+  port: 80
+
+spring:
+  profiles:
+    active: dev
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.38.201:3306/doublev-gateway?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始化配置
+      initial-size: 3
+      # 最小连接数
+      min-idle: 3
+      # 最大连接数
+      max-active: 15
+      # 获取连接超时时间
+      max-wait: 5000
+      # 连接有效性检测时间
+      time-between-eviction-runs-millis: 90000
+      # 最大空闲时间
+      min-evictable-idle-time-millis: 1800000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+      validation-query: select 1
+      # 配置监控统计拦截的filters
+      filters: stat
+      web-stat-filter:
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+        enabled: false
+      #StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      stat-view-servlet:
+        enabled: false #是否启用StatViewServlet默认值true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin #用户名
+        login-password: admin #密码
+    main:
+      allow-bean-definition-overriding: true
+    #    allow-circular-references: true
+  redis:
+    host: 192.168.38.201
+    port: 6379
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.38.201:8848
+    gateway:
+      routes:
+        - id: fi_route
+          uri: lb://fi
+          predicates:
+            - Path=/api/fi/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
+
+        - id: mm_route
+          uri: lb://mm
+          predicates:
+            - Path=/api/mm/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
+
+        - id: third-party_route
+          uri: lb://third-party
+          predicates:
+            - Path=/api/third-party/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
+  application:
+    name: gateway
+  security:
+    user:
+      name: user
+      password: 123
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.app
+#  global-config:
+#    db-config:
+#      table-prefix: gateway_
+
+

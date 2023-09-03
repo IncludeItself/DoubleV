@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.fi.dao.CurrencyRateDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.fi.entity.CurrencyRateEntity" id="currencyRateMap">
+        <result property="id" column="id"/>
+        <result property="currency" column="currency"/>
+        <result property="year" column="year"/>
+        <result property="month" column="month"/>
+        <result property="rateToHardCurrency" column="rate_to_hard_currency"/>
+    </resultMap>
+    <select id="selectCurrencies" resultType="String">
+        select distinct currency from currency_rate
+    </select>
+    <select id="getRateByCurrency" resultType="java.lang.Float">
+        select max(rate_to_hard_currency) from currency_rate where currency=#{currency}
+    </select>
+
+
+</mapper>

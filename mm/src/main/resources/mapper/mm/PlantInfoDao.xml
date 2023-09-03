@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.PlantInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.PlantInfoEntity" id="plantInfoMap">
+        <result property="plantCode" column="plant_code"/>
+        <result property="plantDescription" column="plant_description"/>
+        <result property="companyCode" column="company_code"/>
+        <result property="companyDescription" column="company_description"/>
+        <result property="currency" column="currency"/>
+        <result property="chartAccounts" column="chart_accounts"/>
+        <result property="currentPeriod" column="current_period"/>
+        <result property="lastPeriodAllowed" column="last_period_allowed"/>
+    </resultMap>
+
+    <sql id="plantInfoColumns">plant_code,plant_description,company_code,company_description,current_period,last_period_allowed</sql>
+    <update id="updatePeriodDate">
+        update plant_info set current_period=#{newPeriod} last_period_allowed=true where company_code=#{companyCode}
+    </update>
+    <update id="updateLastPeriodAllowed">
+        update plant_info set last_period_allowed=#{i} where company_code=#{companyCode}
+    </update>
+    <select id="getByCompanyCode" resultType="com.wuxinfeng.doublev.mm.entity.PlantInfoEntity">
+        select <include refid="plantInfoColumns"></include> from plant_info
+        <where>
+            company_code=#{companyCode}
+        </where>
+    </select>
+
+
+</mapper>

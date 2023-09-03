@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.gateway.dao.UserInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.gateway.entity.UserInfoEntity" id="userInfoMap">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="mobilePhone" column="mobile_phone"/>
+        <result property="birthday" column="birthday"/>
+        <result property="password" column="password"/>
+        <result property="role" column="role"/>
+        <result property="title" column="title"/>
+        <result property="email" column="email"/>
+        <result property="timeLast" column="time_last"/>
+        <result property="timeCreated" column="time_created"/>
+        <result property="accountNonExpired" column="account_non_expired"/>
+        <result property="accountNonLocked" column="account_non_locked"/>
+        <result property="credentialsNonExpired" column="credentials_non_expired"/>
+        <result property="enabled" column="enabled"/>
+    </resultMap>
+
+
+</mapper>

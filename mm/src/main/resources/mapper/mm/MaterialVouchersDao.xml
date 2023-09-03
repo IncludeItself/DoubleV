@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.MaterialVouchersDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.MaterialVouchersEntity" id="materialVouchersMap">
+        <result property="materialVoucherCode" column="material_voucher_code"/>
+        <result property="fiVoucherCode" column="fi_voucher_code"/>
+        <result property="dateOperated" column="date_operated"/>
+        <result property="documentDate" column="document_date"/>
+        <result property="postDate" column="post_date"/>
+        <result property="movementType" column="movement_type"/>
+        <result property="movementTypeDescription" column="movement_type_description"/>
+        <result property="reference" column="reference"/>
+        <result property="headerText" column="header_text"/>
+        <result property="purchaseOrder" column="purchase_order"/>
+        <result property="saleOrder" column="sale_order"/>
+        <result property="creator" column="creator"/>
+    </resultMap>
+
+
+</mapper>

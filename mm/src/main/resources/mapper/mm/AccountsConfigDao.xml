@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.AccountsConfigDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.AccountsConfigEntity" id="accountsConfigMap">
+        <result property="id" column="id"/>
+        <result property="chartAccounts" column="chart_accounts"/>
+        <result property="transactionKey" column="transaction_key"/>
+        <result property="accountModification" column="account_modification"/>
+        <result property="valuationClass" column="valuation_class"/>
+        <result property="supplierType" column="supplier_type"/>
+        <result property="debitAccount" column="debit_account"/>
+        <result property="creditAccount" column="credit_account"/>
+    </resultMap>
+    <select id="getByEntity" resultType="com.wuxinfeng.doublev.mm.entity.AccountsConfigEntity">
+        select * from accounts_config
+        <where>
+            <if test="chartAccounts!=null">
+                and chart_accounts=#{chartAccounts}
+            </if>
+            <if test="transactionKey!=null">
+                and transaction_key=#{transactionKey}
+            </if>
+            <if test="accountModification!=null">
+                and account_modification=#{accountModification}
+            </if>
+            <if test="accountModification=null">
+                and account_modification is null
+            </if>
+            <if test="valuationClass!=null">
+                and valuation_class=#{valuationClass}
+            </if>
+            <if test="supplierType!=null">
+                and supplier_type_id=#{supplierTypeId}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

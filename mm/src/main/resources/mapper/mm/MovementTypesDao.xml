@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuxinfeng.doublev.mm.dao.MovementTypesDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wuxinfeng.doublev.mm.entity.MovementTypesEntity" id="movementTypesMap">
+        <result property="movementType" column="movement_type"/>
+        <result property="movementTypeDescription" column="movement_type_description"/>
+        <result property="isWarehousing" column="is_warehousing"/>
+        <result property="reverseMovement" column="reverse_movement"/>
+        <result property="reverseMovementDescription" column="reverse_movement_description"/>
+        <result property="move_Direction" column="move_direction"/>
+    </resultMap>
+
+    <select id="getDescriptionbyUsage" resultType="java.lang.String">
+        select movement_type_description from movement_types where used_for=#{usage}
+    </select>
+    <select id="getMovementTypeByUsage" resultType="java.lang.String">
+        select movement_type from movement_types where used_for=#{usage}
+    </select>
+    <select id="selectByReverseType" resultType="com.wuxinfeng.doublev.mm.entity.MovementTypesEntity">
+        select * from movement_type
+        <where>
+            reverse_movement=#{movementType}
+        </where>
+    </select>
+    <select id="selectByType" resultType="com.wuxinfeng.doublev.mm.entity.MovementTypesEntity">
+        select * from movement_type
+        <where>
+            movement_type=#{movementType}
+        </where>
+    </select>
+
+
+</mapper>
