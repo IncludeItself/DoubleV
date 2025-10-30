@@ -27,7 +27,7 @@
     <modules>
         <module>common</module>
         <module>gateway</module>
-        <module>third-party</module>
+<!--        <module>third-party</module>-->
         <module>fi</module>
         <module>mm</module>
     </modules>
